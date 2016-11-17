@@ -1,4 +1,4 @@
-package pattern.factory;
+package pattern.factorymethod;
 
 public class HumanFactory extends AbstractHumanFactory {
 
