@@ -3,12 +3,12 @@ package springioc.ioc02;
 import org.springframework.stereotype.Repository;
 
 /**
- * Í¼ÊéÊı¾İ·ÃÎÊÊµÏÖÀà
+ * å›¾ä¹¦æ•°æ®è®¿é—®å®ç°ç±»
  */
 @Repository
 public class BookDAO implements IBookDAO {
 
     public String addBook(String bookname) {
-        return "Ìí¼ÓÍ¼Êé" + bookname + "³É¹¦£¡";
+        return "æ·»åŠ å›¾ä¹¦" + bookname + "æˆåŠŸï¼";
     }
 }

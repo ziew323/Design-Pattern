@@ -1,19 +1,19 @@
 package pattern.factorymethod;
 
 /**
- * 人类
+ * 浜虹被
  * @author jiaziwei
  *
  */
 public interface Human {
 
     /**
-     * 人种皮肤颜色
+     * 浜虹鐨偆棰滆壊
      */
     public void getColor();
 
     /**
-     * 说话
+     * 璇磋瘽
      */
     public void talk();
 }

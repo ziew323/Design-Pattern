@@ -7,8 +7,8 @@ import pattern.proxy.Subject;
 
 public class DynamicProxy<T> {
     /** 
-     * ´´½¨¶¯Ì¬´úÀíÀà 
-     * @return object(´úÀíÀà) 
+     * åˆ›å»ºåŠ¨æ€ä»£ç†ç±» 
+     * @return object(ä»£ç†ç±») 
      */
     @SuppressWarnings("unchecked")
     public static <T> T createProxy(ClassLoader loader, Class<?>[] interfaces, InvocationHandler h) {
@@ -16,8 +16,8 @@ public class DynamicProxy<T> {
     }
 
     /** 
-     * ´´½¨¶¯Ì¬´úÀíÀà (ÇÖÈëÒµÎñ³¡¾°)
-     * @return object(´úÀíÀà) 
+     * åˆ›å»ºåŠ¨æ€ä»£ç†ç±» (ä¾µå…¥ä¸šåŠ¡åœºæ™¯)
+     * @return object(ä»£ç†ç±») 
      */
     @SuppressWarnings("unchecked")
     public static <T> T createProxy(Subject subject) {

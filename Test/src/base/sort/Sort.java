@@ -48,16 +48,16 @@ public class Sort {
         List<Book> books = type.getList();
         Random random = new Random(size * 10);
         for (int i = 0; i < size; i++) {
-            books.add(new Book(i + 1, "Êé" + i, random.nextDouble()));
+            books.add(new Book(i + 1, "ä¹¦" + i, random.nextDouble()));
         }
         return books;
     }
 
     public void sortByComparator() {
         List<Fruit> list = new ArrayList<Fruit>();
-        list.add(new Fruit("Æ»¹û", 5.00));
-        list.add(new Fruit("Ïã½¶", 6.00));
-        list.add(new Fruit("éÙ×Ó", 4.00));
+        list.add(new Fruit("è‹¹æœ", 5.00));
+        list.add(new Fruit("é¦™è•‰", 6.00));
+        list.add(new Fruit("æ©˜å­", 4.00));
         Collections.sort(list, new MyFruitComparator());
         print(list);
 

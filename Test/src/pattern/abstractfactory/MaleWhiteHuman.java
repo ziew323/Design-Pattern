@@ -4,7 +4,7 @@ public class MaleWhiteHuman extends AbstractYellowHuman {
 
     @Override
     public void getSex() {
-        System.out.println("°×ÖÖÈËÄĞĞÔ");
+        System.out.println("ç™½ç§äººç”·æ€§");
     }
 
 }

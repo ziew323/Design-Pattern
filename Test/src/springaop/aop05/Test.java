@@ -7,7 +7,7 @@ public class Test {
 
     @SuppressWarnings("resource")
     public static void main(String[] args) {
-        // 通过类初始化容器
+        // 閫氳繃绫诲垵濮嬪寲瀹瑰櫒
         ApplicationContext ctx = new AnnotationConfigApplicationContext(ApplicationCfg.class);
         Math math = ctx.getBean("math", Math.class);
         int n1 = 100, n2 = 0;

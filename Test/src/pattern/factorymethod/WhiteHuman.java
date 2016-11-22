@@ -4,12 +4,12 @@ public class WhiteHuman implements Human {
 
     @Override
     public void getColor() {
-        System.out.println("白种人皮肤是白的");
+        System.out.println("鐧界浜虹毊鑲ゆ槸鐧界殑");
     }
 
     @Override
     public void talk() {
-        System.out.println("白种人说话！");
+        System.out.println("鐧界浜鸿璇濓紒");
     }
 
 }

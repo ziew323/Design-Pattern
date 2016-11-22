@@ -7,8 +7,8 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
 /**
- * 通知类，横切逻辑
- * 使用注解配置
+ * 閫氱煡绫伙紝妯垏閫昏緫
+ * 浣跨敤娉ㄨВ閰嶇疆
  */
 @Component
 @Aspect
@@ -16,12 +16,12 @@ public class Advices {
 
     @Before("execution(* springaop.aop02.Math.*(..))")
     public void before(JoinPoint jp) {
-        System.out.println("----------前置通知----------");
+        System.out.println("----------鍓嶇疆閫氱煡----------");
         System.out.println(jp.getSignature().getName());
     }
 
     @After("execution(* springaop.aop02.Math.*(..))")
     public void after(JoinPoint jp) {
-        System.out.println("----------最终通知----------");
+        System.out.println("----------鏈�缁堥�氱煡----------");
     }
 }

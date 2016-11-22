@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Í¼ÊéÒµÎñÀà
+ * å›¾ä¹¦ä¸šåŠ¡ç±»
  */
 @Service
 public class BookService {
@@ -12,7 +12,7 @@ public class BookService {
     IBookDAO bookDAO;
 
     public void storeBook(String bookname) {
-        System.out.println("Í¼ÊéÉÏ»õ");
+        System.out.println("å›¾ä¹¦ä¸Šè´§");
         String result = bookDAO.addBook(bookname);
         System.out.println(result);
     }

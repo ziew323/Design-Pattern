@@ -5,7 +5,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 /**
- * Í¼ÊéÒµÎñÀà
+ * å›¾ä¹¦ä¸šåŠ¡ç±»
  */
 @Service
 public class BookService {
@@ -13,11 +13,11 @@ public class BookService {
 
     @SuppressWarnings("resource")
     public void storeBook(String bookname) {
-        //ÈÝÆ÷
+        //å®¹å™¨
         ApplicationContext ctx = new ClassPathXmlApplicationContext("ioc02.xml");
-        //´ÓÈÝÆ÷ÖÐ»ñµÃidÎªbookdaoµÄbean
+        //ä»Žå®¹å™¨ä¸­èŽ·å¾—idä¸ºbookdaoçš„bean
         bookDAO = (IBookDAO) ctx.getBean("bookDAO");
-        System.out.println("Í¼ÊéÉÏ»õ");
+        System.out.println("å›¾ä¹¦ä¸Šè´§");
         String result = bookDAO.addBook(bookname);
         System.out.println(result);
     }

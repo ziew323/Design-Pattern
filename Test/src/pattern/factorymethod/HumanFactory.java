@@ -8,7 +8,7 @@ public class HumanFactory extends AbstractHumanFactory {
         try {
             human = (Human) Class.forName(c.getName()).newInstance();
         } catch (Exception e) {
-            System.out.println("ÈËÀàÉú³É´íÎó£¡");
+            System.out.println("äººç±»ç”Ÿæˆé”™è¯¯ï¼");
         }
         return (T) human;
     }

@@ -7,50 +7,50 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
 /**
- * Í¨ÖªÀà£¬ºáÇĞÂß¼­
- * AspectJÇĞµãº¯Êı
+ * é€šçŸ¥ç±»ï¼Œæ¨ªåˆ‡é€»è¾‘
+ * AspectJåˆ‡ç‚¹å‡½æ•°
  */
 @Component
 @Aspect
 public class Advices {
     @Before("execution(* springaop.aop03.*.*(..))")
     public void before(JoinPoint jp) {
-        System.out.println("----------Ç°ÖÃÍ¨Öª----------");
+        System.out.println("----------å‰ç½®é€šçŸ¥----------");
         System.out.println(jp.getSignature().getName());
     }
 
-    //executionÇĞµãº¯Êı
-    //springaop.aop03°üÏÂËùÓĞÀàµÄËùÓĞ·½·¨±»ÇĞÈë
+    //executionåˆ‡ç‚¹å‡½æ•°
+    //springaop.aop03åŒ…ä¸‹æ‰€æœ‰ç±»çš„æ‰€æœ‰æ–¹æ³•è¢«åˆ‡å…¥
     @After("execution(* springaop.aop03.*.*(..))")
     public void after1(JoinPoint jp) {
-        System.out.println("----------×îÖÕÍ¨ÖªexecutionÇĞµãº¯Êı----------");
+        System.out.println("----------æœ€ç»ˆé€šçŸ¥executionåˆ‡ç‚¹å‡½æ•°----------");
     }
 
-    //withinÇĞµãº¯Êı
-    //springaop.aop03°üÏÂËùÓĞÀàµÄËùÓĞ·½·¨±»ÇĞÈë
+    //withinåˆ‡ç‚¹å‡½æ•°
+    //springaop.aop03åŒ…ä¸‹æ‰€æœ‰ç±»çš„æ‰€æœ‰æ–¹æ³•è¢«åˆ‡å…¥
     @After("within(springaop.aop03.*)")
     public void after2(JoinPoint jp) {
-        System.out.println("----------×îÖÕÍ¨ÖªwithinÇĞµãº¯Êı----------");
+        System.out.println("----------æœ€ç»ˆé€šçŸ¥withinåˆ‡ç‚¹å‡½æ•°----------");
     }
 
-    //thisÇĞµãº¯Êı
-    //ÊµÏÖÁËStrUtil½Ó¿ÚµÄ´úÀí¶ÔÏóµÄÈÎÒâÁ¬½Óµã
+    //thisåˆ‡ç‚¹å‡½æ•°
+    //å®ç°äº†StrUtilæ¥å£çš„ä»£ç†å¯¹è±¡çš„ä»»æ„è¿æ¥ç‚¹
     @After("this(springaop.aop03.StrUtil)")
     public void after3(JoinPoint jp) {
-        System.out.println("----------×îÖÕÍ¨ÖªthisÇĞµãº¯Êı----------");
+        System.out.println("----------æœ€ç»ˆé€šçŸ¥thisåˆ‡ç‚¹å‡½æ•°----------");
     }
 
-    //argsÇĞµãº¯Êı
-    //ÒªÇó·½·¨ÓĞÁ½¸öintÀàĞÍµÄ²Î¿¼²Å»á±»Ö¯ÈëºáÇĞÂß¼­
+    //argsåˆ‡ç‚¹å‡½æ•°
+    //è¦æ±‚æ–¹æ³•æœ‰ä¸¤ä¸ªintç±»å‹çš„å‚è€ƒæ‰ä¼šè¢«ç»‡å…¥æ¨ªåˆ‡é€»è¾‘
     @After("args()")
     public void after4(JoinPoint jp) {
-        System.out.println("----------×îÖÕÍ¨ÖªargsÇĞµãº¯Êı----------");
+        System.out.println("----------æœ€ç»ˆé€šçŸ¥argsåˆ‡ç‚¹å‡½æ•°----------");
     }
 
-    //@annotationÇĞµãº¯Êı
-    //ÒªÇó·½·¨±ØĞë±»×¢½âcom.zhangguo.Spring052.aop03.MyAnno²Å»á±»Ö¯ÈëºáÇĞÂß¼­
+    //@annotationåˆ‡ç‚¹å‡½æ•°
+    //è¦æ±‚æ–¹æ³•å¿…é¡»è¢«æ³¨è§£com.zhangguo.Spring052.aop03.MyAnnoæ‰ä¼šè¢«ç»‡å…¥æ¨ªåˆ‡é€»è¾‘
     @After("@annotation(springaop.aop03.MyAnno)")
     public void after5(JoinPoint jp) {
-        System.out.println("----------×îÖÕÍ¨Öª@annotationÇĞµãº¯Êı----------");
+        System.out.println("----------æœ€ç»ˆé€šçŸ¥@annotationåˆ‡ç‚¹å‡½æ•°----------");
     }
 }

@@ -6,7 +6,7 @@ import pattern.proxy.Subject;
 public class ActionTest {
     public static void main(String[] args) {
         Subject subject = new RealSubject();
-        //创建代理对象  
+        //鍒涘缓浠ｇ悊瀵硅薄  
         LogHandler handler = new LogHandler(subject);
         Subject proxy1 = DynamicProxy.createProxy(subject.getClass().getClassLoader(),
             subject.getClass().getInterfaces(), handler);

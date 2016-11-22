@@ -8,9 +8,9 @@ public class Test {
     @SuppressWarnings("resource")
     @org.junit.Test
     public void testStoreBook() {
-        //ÈİÆ÷
+        //å®¹å™¨
         ApplicationContext ctx = new ClassPathXmlApplicationContext("ioc03.xml");
         BookService bookService = ctx.getBean(BookService.class);
-        bookService.storeBook("¡¶Spring MVCÈ¨ÍşÖ¸ÄÏ µÚ¶ş°æ¡·");
+        bookService.storeBook("ã€ŠSpring MVCæƒå¨æŒ‡å— ç¬¬äºŒç‰ˆã€‹");
     }
 }

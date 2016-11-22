@@ -5,11 +5,11 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
-@Configuration //ÓÃÓÚ±íÊ¾µ±Ç°ÀàÎªÈİÆ÷µÄÅäÖÃÀà£¬ÀàËÆ<beans/>
-@ComponentScan(basePackages = "springaop.aop05") //É¨ÃèµÄ·¶Î§£¬Ïàµ±ÓÚxmlÅäÖÃµÄ½áµã<context:component-scan/>
-@EnableAspectJAutoProxy(proxyTargetClass = true) //×Ô¶¯´úÀí£¬Ïàµ±ÓÚ<aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+@Configuration //ç”¨äºè¡¨ç¤ºå½“å‰ç±»ä¸ºå®¹å™¨çš„é…ç½®ç±»ï¼Œç±»ä¼¼<beans/>
+@ComponentScan(basePackages = "springaop.aop05") //æ‰«æçš„èŒƒå›´ï¼Œç›¸å½“äºxmlé…ç½®çš„ç»“ç‚¹<context:component-scan/>
+@EnableAspectJAutoProxy(proxyTargetClass = true) //è‡ªåŠ¨ä»£ç†ï¼Œç›¸å½“äº<aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
 public class ApplicationCfg {
-    //ÔÚÅäÖÃÖĞÉùÃ÷Ò»¸öbean£¬Ïàµ±ÓÚ<bean id=getUser class="springaop.aop05.User"/>
+    //åœ¨é…ç½®ä¸­å£°æ˜ä¸€ä¸ªbeanï¼Œç›¸å½“äº<bean id=getUser class="springaop.aop05.User"/>
     @Bean
     public User getUser() {
         return new User();

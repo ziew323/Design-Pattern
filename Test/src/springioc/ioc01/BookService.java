@@ -4,20 +4,20 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * Í¼ÊéÒµÎñÀà
+ * å›¾ä¹¦ä¸šåŠ¡ç±»
  */
 public class BookService {
     IBookDAO bookDAO;
 
     public BookService() {
-        //ÈÝÆ÷
+        //å®¹å™¨
         ApplicationContext ctx = new ClassPathXmlApplicationContext("ioc01.xml");
-        //´ÓÈÝÆ÷ÖÐ»ñµÃidÎªbookdaoµÄbean
+        //ä»Žå®¹å™¨ä¸­èŽ·å¾—idä¸ºbookdaoçš„bean
         bookDAO = (IBookDAO) ctx.getBean("bookdao");
     }
 
     public void storeBook(String bookname) {
-        System.out.println("Í¼ÊéÉÏ»õ");
+        System.out.println("å›¾ä¹¦ä¸Šè´§");
         String result = bookDAO.addBook(bookname);
         System.out.println(result);
     }

@@ -10,11 +10,11 @@ public class Client {
         String expStr = getExpStr();
         HashMap<String, Integer> var = getValue(expStr);
         Calculator cal = new Calculator(expStr);
-        System.out.println("ÔËËã½á¹ûÎª£º" + expStr + "=" + cal.run(var));
+        System.out.println("è¿ç®—ç»“æœä¸ºï¼š" + expStr + "=" + cal.run(var));
     }
 
     public static String getExpStr() throws Exception {
-        System.out.println("ÇëÊäÈë±í´ïÊ½£º");
+        System.out.println("è¯·è¾“å…¥è¡¨è¾¾å¼ï¼š");
         return (new BufferedReader(new InputStreamReader(System.in))).readLine();
     }
 
@@ -23,7 +23,7 @@ public class Client {
         for (char ch : expStr.toCharArray()) {
             if (ch != '+' && ch != '-') {
                 if (!map.containsKey(String.valueOf(ch))) {
-                    System.out.println(String.format("ÇëÊäÈë%sµÄÖµ", ch));
+                    System.out.println(String.format("è¯·è¾“å…¥%sçš„å€¼", ch));
                     String in = (new BufferedReader(new InputStreamReader(System.in))).readLine();
                     map.put(String.valueOf(ch), Integer.valueOf(in));
                 }

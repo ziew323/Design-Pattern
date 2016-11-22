@@ -1,11 +1,11 @@
 package springioc.ioc02;
 
 /**
- * 图书数据访问接口
+ * 鍥句功鏁版嵁璁块棶鎺ュ彛
  */
 public interface IBookDAO {
     /**
-     * 添加图书
+     * 娣诲姞鍥句功
      */
     public String addBook(String bookname);
 }

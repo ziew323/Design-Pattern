@@ -4,6 +4,6 @@ public class Test {
     @org.junit.Test
     public void testStoreBook() {
         BookService bookservice = new BookService();
-        bookservice.storeBook("¡¶Spring MVCÈ¨ÍşÖ¸ÄÏ µÚÒ»°æ¡·");
+        bookservice.storeBook("ã€ŠSpring MVCæƒå¨æŒ‡å— ç¬¬ä¸€ç‰ˆã€‹");
     }
 }

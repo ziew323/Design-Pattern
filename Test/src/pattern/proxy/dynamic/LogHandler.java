@@ -7,7 +7,7 @@ import java.lang.reflect.Proxy;
 import pattern.proxy.Subject;
 
 public class LogHandler implements InvocationHandler {
-    //Ä¿±ê¶ÔÏó  
+    //ç›®æ ‡å¯¹è±¡  
     private Object targetObject;
 
     public LogHandler(Subject subject) {
@@ -15,8 +15,8 @@ public class LogHandler implements InvocationHandler {
     }
 
     /** 
-     * ´´½¨¶¯Ì¬´úÀíÀà 
-     * @return object(´úÀíÀà) 
+     * åˆ›å»ºåŠ¨æ€ä»£ç†ç±» 
+     * @return object(ä»£ç†ç±») 
      */
     public Object createProxy(Object targetObject) {
         this.targetObject = targetObject;
@@ -29,9 +29,9 @@ public class LogHandler implements InvocationHandler {
         Object obj = null;
         try {
             beforeLog();
-            //obj£º Ä¿±ê¶ÔÏó--->´úÀí¶ÔÏóµÄ·µ»ØÖµ--->·µ»Ø¸øµ÷ÓÃÕßµÄĞÅÏ¢  
-            //this.invoke("Ä¿±ê¶ÔÏó","´úÀí¶ÔÏó¸øÄ¿±ê¶ÔÏó´«µİ²ÎÊı");  
-            //µ÷ÓÃÄ¿±ê¶ÔÏóÖĞ·½·¨  
+            //objï¼š ç›®æ ‡å¯¹è±¡--->ä»£ç†å¯¹è±¡çš„è¿”å›å€¼--->è¿”å›ç»™è°ƒç”¨è€…çš„ä¿¡æ¯  
+            //this.invoke("ç›®æ ‡å¯¹è±¡","ä»£ç†å¯¹è±¡ç»™ç›®æ ‡å¯¹è±¡ä¼ é€’å‚æ•°");  
+            //è°ƒç”¨ç›®æ ‡å¯¹è±¡ä¸­æ–¹æ³•  
             obj = method.invoke(targetObject, args);
             afterLog();
         } catch (Exception e) {
@@ -40,13 +40,13 @@ public class LogHandler implements InvocationHandler {
         return obj;
     }
 
-    //ÈÕÖ¾¹ÜÀí·½·¨  
+    //æ—¥å¿—ç®¡ç†æ–¹æ³•  
     private void beforeLog() {
-        System.out.println("¿ªÊ¼Ö´ĞĞ");
+        System.out.println("å¼€å§‹æ‰§è¡Œ");
     }
 
     private void afterLog() {
-        System.out.println("Ö´ĞĞÍê±Ï");
+        System.out.println("æ‰§è¡Œå®Œæ¯•");
     }
 
 }

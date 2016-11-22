@@ -12,51 +12,51 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 /**
- * Í¨ÖªÀà£¬ºáÇĞÂß¼­
- * AspectJÍ¨Öª×¢½â
+ * é€šçŸ¥ç±»ï¼Œæ¨ªåˆ‡é€»è¾‘
+ * AspectJé€šçŸ¥æ³¨è§£
  */
 @Component
 @Aspect
 public class Advices {
-    //ÇĞµã
+    //åˆ‡ç‚¹
     @Pointcut("execution(* springaop.aop04.Math.*(..))")
     public void pointcut() {
     }
 
     @Before("pointcut()")
     public void before(JoinPoint jp) {
-        System.out.println("----------Ç°ÖÃÍ¨Öª----------");
+        System.out.println("----------å‰ç½®é€šçŸ¥----------");
         System.out.println(jp.getSignature().getName());
     }
 
     @After("pointcut()")
     public void after(JoinPoint jp) {
-        System.out.println("----------×îÖÕÍ¨Öª----------");
+        System.out.println("----------æœ€ç»ˆé€šçŸ¥----------");
     }
 
-    //»·ÈÆÍ¨Öª
+    //ç¯ç»•é€šçŸ¥
     @Around("pointcut()")
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
         System.out.println(pjp.getSignature().getName());
-        System.out.println("----------»·ÈÆÇ°ÖÃ----------");
+        System.out.println("----------ç¯ç»•å‰ç½®----------");
         Object result = pjp.proceed();
-        System.out.println("----------»·ÈÆºóÖÃ----------");
+        System.out.println("----------ç¯ç»•åç½®----------");
         return result;
     }
 
-    //·µ»Ø½á¹ûÍ¨Öª
+    //è¿”å›ç»“æœé€šçŸ¥
     @AfterReturning(pointcut = "pointcut()", returning = "result")
     public void afterReturning(JoinPoint jp, Object result) {
         System.out.println(jp.getSignature().getName());
-        System.out.println("½á¹ûÊÇ£º" + result);
-        System.out.println("----------·µ»Ø½á¹û----------");
+        System.out.println("ç»“æœæ˜¯ï¼š" + result);
+        System.out.println("----------è¿”å›ç»“æœ----------");
     }
 
-    //Òì³£ºóÍ¨Öª
+    //å¼‚å¸¸åé€šçŸ¥
     @AfterThrowing(pointcut = "pointcut()", throwing = "exp")
     public void afterThrowing(JoinPoint jp, Exception exp) {
         System.out.println(jp.getSignature().getName());
-        System.out.println("Òì³£ÏûÏ¢£º" + exp.getMessage());
-        System.out.println("----------Òì³£Í¨Öª----------");
+        System.out.println("å¼‚å¸¸æ¶ˆæ¯ï¼š" + exp.getMessage());
+        System.out.println("----------å¼‚å¸¸é€šçŸ¥----------");
     }
 }

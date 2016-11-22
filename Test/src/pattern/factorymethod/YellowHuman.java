@@ -4,12 +4,12 @@ public class YellowHuman implements Human {
 
     @Override
     public void getColor() {
-        System.out.println("»ÆÖÖÈËÆ¤·ôÊÇ»ÆÉ«£¡");
+        System.out.println("é»„ç§äººçš®è‚¤æ˜¯é»„è‰²ï¼");
     }
 
     @Override
     public void talk() {
-        System.out.println("»ÆÖÖÈËËµ»°£¡");
+        System.out.println("é»„ç§äººè¯´è¯ï¼");
     }
 
 }

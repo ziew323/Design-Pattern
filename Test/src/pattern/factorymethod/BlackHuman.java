@@ -4,12 +4,12 @@ public class BlackHuman implements Human {
 
     @Override
     public void getColor() {
-        System.out.println("ºÚÖÖÈËÆ¤·ôÊÇºÚÉ«£¡");
+        System.out.println("é»‘ç§äººçš®è‚¤æ˜¯é»‘è‰²ï¼");
     }
 
     @Override
     public void talk() {
-        System.out.println("ºÚÖÖÈËËµ»°£¡");
+        System.out.println("é»‘ç§äººè¯´è¯ï¼");
 
     }
 

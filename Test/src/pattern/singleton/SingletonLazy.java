@@ -1,7 +1,7 @@
 package pattern.singleton;
 
 /**
- * ÀÁººÊ½
+ * æ‡’æ±‰å¼
  * @author jiaziwei
  *
  */

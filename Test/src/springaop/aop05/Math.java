@@ -3,32 +3,32 @@ package springaop.aop05;
 import org.springframework.stereotype.Service;
 
 /**
- * ±»´úÀíµÄÄ¿±êÀà
+ * è¢«ä»£ç†çš„ç›®æ ‡ç±»
  */
 @Service("math")
 public class Math {
-    //¼Ó
+    //åŠ 
     public int add(int n1, int n2) {
         int result = n1 + n2;
         System.out.println(n1 + "+" + n2 + "=" + result);
         return result;
     }
 
-    //¼õ
+    //å‡
     public int sub(int n1, int n2) {
         int result = n1 - n2;
         System.out.println(n1 + "-" + n2 + "=" + result);
         return result;
     }
 
-    //³Ë
+    //ä¹˜
     public int mut(int n1, int n2) {
         int result = n1 * n2;
         System.out.println(n1 + "X" + n2 + "=" + result);
         return result;
     }
 
-    //³ı
+    //é™¤
     public int div(int n1, int n2) {
         int result = n1 / n2;
         System.out.println(n1 + "/" + n2 + "=" + result);

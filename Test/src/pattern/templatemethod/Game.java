@@ -6,7 +6,7 @@ public abstract class Game {
     }
 
     /**
-     * ¹³×Ó·½·¨
+     * é’©å­æ–¹æ³•
      */
     abstract void startPlay();
 
@@ -14,16 +14,16 @@ public abstract class Game {
         System.out.println("Game Finished!");
     }
 
-    //Ä£°å
+    //æ¨¡æ¿
     public final void play() {
 
-        //³õÊ¼»¯ÓÎÏ·
+        //åˆå§‹åŒ–æ¸¸æˆ
         initialize();
 
-        //¿ªÊ¼ÓÎÏ·
+        //å¼€å§‹æ¸¸æˆ
         startPlay();
 
-        //½áÊøÓÎÏ·
+        //ç»“æŸæ¸¸æˆ
         endPlay();
     }
 }

@@ -5,17 +5,17 @@ public class NvWa {
     public static void main(String[] args) {
         AbstractHumanFactory yinYanglu = new HumanFactory();
 
-        System.out.println("∞◊÷÷»À");
+        System.out.println("ÁôΩÁßç‰∫∫");
         Human whiteHuman = yinYanglu.createHuman(WhiteHuman.class);
         whiteHuman.getColor();
         whiteHuman.talk();
 
-        System.out.println("ª∆÷÷»À");
+        System.out.println("ÈªÑÁßç‰∫∫");
         Human yellowHuman = yinYanglu.createHuman(YellowHuman.class);
         yellowHuman.getColor();
         yellowHuman.talk();
 
-        System.out.println("∫⁄÷÷»À");
+        System.out.println("ÈªëÁßç‰∫∫");
         Human blackHuman = yinYanglu.createHuman(BlackHuman.class);
         blackHuman.getColor();
         blackHuman.talk();
