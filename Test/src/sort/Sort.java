@@ -1,7 +1,5 @@
 package sort;
 
-import sort.common.SortUtil;
-
 public class Sort {
 
     /**
@@ -29,10 +27,9 @@ public class Sort {
      * @param a 待排序集合
      */
     public static void shellSort(int[] a) {
-        int dk = a.length / 2;
-        while (dk >= 1) {
+        int dk = a.length;
+        while ((dk /= 2) >= 1) {
             shellInsertionSort(a, dk);
-            dk = dk / 2;
         }
     }
 
@@ -47,15 +44,14 @@ public class Sort {
      */
     private static void shellInsertionSort(int a[], int dk) {
         for (int i = dk; i < a.length; i++) {
-            if (a[i] < a[i - dk]) { //若第i个元素大于i-1元素，直接插入。小于的话，移动有序表后插入  
+            if (a[i] < a[i - dk]) { //若第i个元素大于i-dk元素，直接插入。小于的话，移动有序表后插入  
                 int j = i - dk;
-                int x = a[i]; //复制为哨兵，即存储待排序元素  
-                a[i] = a[i - dk]; //首先后移一个元素  
-                while (j >= 0 && x < a[j]) { //查找在有序表的插入位置  
+                int tmp = a[i]; //复制为哨兵，即存储待排序元素  
+                while (j >= 0 && a[j] > tmp) { //查找在有序表的插入位置  
                     a[j + dk] = a[j];
                     j -= dk; //元素后移  
                 }
-                a[j + dk] = x; //插入到正确位置  
+                a[j + dk] = tmp; //插入到正确位置  
             }
         }
     }
@@ -101,7 +97,6 @@ public class Sort {
         int length = a.length;
         //初始堆
         buildHeap(a, length);
-        SortUtil.print(a);
         //从最后一个元素开始对序列进行调整  
         for (int i = length - 1; i > 0; i--) {
             //交换堆顶元素a[0]和堆中最后一个元素  
@@ -130,8 +125,8 @@ public class Sort {
      * 已知a[s…m]除了a[s] 外均满足堆的定义，</br>
      * 调整a[s],使其成为大顶堆.即将对第s个结点为根的子树筛选,
      * @param a 待排序集合
-     * @param s
-     * @param length 
+     * @param s 待调整节点
+     * @param length 堆大小
      */
     private static void adjustHeap(int[] a, int s, int length) {
         int tmp = a[s];
@@ -149,6 +144,152 @@ public class Sort {
             }
             a[s] = tmp; // 当前待调整的结点放到比其大的孩子结点位置上  
         }
-        SortUtil.print(a);
+    }
+
+    /**
+     * 冒泡排序</br></br>
+     * 时间复杂度：O（n^2），最好情况：O（n），最坏情况：O（n^2）。</br>
+     * 空间复杂度：O（1）。</br>
+     * 稳定性：稳定。</br></br>
+     * 在要排序的一组数中，对当前还未排好序的范围内的全部数，
+     * 自上而下对相邻的两个数依次进行比较和调整，让较大的数往下沉，较小的往上冒。</br>
+     * 即：每当两相邻的数比较后发现它们的排序与排序要求相反时，就将它们互换。</br>
+     * @param a 待排序集合
+     */
+    public static void bubbleSort(int[] a) {
+        int length = a.length;
+        int tmp;
+        for (int i = 0; i < length; i++) {
+            for (int j = length - 1; j > i; j--) {
+                if (a[j] < a[j - 1]) {
+                    tmp = a[j];
+                    a[j] = a[j - 1];
+                    a[j - 1] = tmp;
+                }
+            }
+        }
+    }
+
+    /**
+     * 快速排序</br></br>
+     * 时间复杂度：O（nlogn），最好情况：O（nlogn），最坏情况：O（n^2）。</br>
+     * 空间复杂度：O（nlogn）。</br>
+     * 稳定性：不稳定。</br></br>
+     * 1）选择一个基准元素，通常选择第一个元素或者最后一个元素；</br>
+     * 2）通过一趟排序讲待排序的记录分割成独立的两部分，其中一部分记录的元素值均比基准元素值小，另一部分记录的元素值比基准值大；</br>
+     * 3）此时基准元素在其排好序后的正确位置；</br>
+     * 4）然后分别对这两部分记录用同样的方法继续进行排序，直到整个序列有序。
+     * @param a 待排序集合
+     */
+    public static void quickSort(int[] a) {
+        quickSort(a, 0, a.length - 1);
+    }
+
+    /**
+     * 快速排序递归实现</br></br>
+     * 取得基准元素，对低子表排序，对高子表排序
+     * @param a 待排序集合
+     * @param low 下界
+     * @param high 上界
+     */
+    private static void quickSort(int[] a, int low, int high) {
+        if (low < high) {
+            int pivot = partition(a, low, high); //将表一分为二
+            quickSort(a, low, pivot - 1); //递归对低子表递归排序
+            quickSort(a, pivot + 1, high); //递归对高子表递归排序
+        }
+    }
+
+    /**
+     * 快速排序交换过程
+     * @param a 待排序集合
+     * @param low 下界
+     * @param high 上界
+     * @return 基准元素
+     */
+    private static int partition(int[] a, int low, int high) {
+        int pivot = a[low]; //基准元素
+        int tmp;
+        while (low < high) { //从表的两端交替地向中间扫描
+            //从high所指位置向前搜索，至多到low+1位置，将比基准元素小的交换到低端
+            while (low < high && a[high] >= pivot) {
+                high--;
+            }
+            tmp = a[low];
+            a[low] = a[high];
+            a[high] = tmp;
+            //从low所指位置向后搜索，至多到high-1位置，将比基准元素大的交换到高端
+            while (low < high && a[low] <= pivot) {
+                low++;
+            }
+            tmp = a[low];
+            a[low] = a[high];
+            a[high] = tmp;
+        }
+        return low;
+    }
+
+    /**
+     * 归并排序</br></br>
+     * 时间复杂度：O（nlogn），最好情况：O（nlogn），最坏情况：O（nlogn）。</br>
+     * 空间复杂度：O（n）。</br>
+     * 稳定性：稳定。</br></br>
+     * 1）选择一个基准元素，通常选择第一个元素或者最后一个元素；</br>
+     * 2）通过一趟排序讲待排序的记录分割成独立的两部分，其中一部分记录的元素值均比基准元素值小，另一部分记录的元素值比基准值大；</br>
+     * 3）此时基准元素在其排好序后的正确位置；</br>
+     * 4）然后分别对这两部分记录用同样的方法继续进行排序，直到整个序列有序。
+     * @param a 待排序集合
+     */
+    public static void mergeSort(int[] a) {
+        int length = a.length;
+        int[] rf = new int[length];
+        int len = 1;
+        int[] q = a;
+        int[] tmp;
+        while (len < length) {
+            int s = len;
+            len = 2 * s;
+            int i = 0;
+            while (i + len < length) {
+                merge(q, rf, i, i + s - 1, i + len - 1); //对等长的两个子表合并  
+                i = i + len;
+            }
+            if (i + s < length) {
+                merge(q, rf, i, i + s - 1, length - 1); //对不等长的两个子表合并  
+            }
+            tmp = q;
+            q = rf;
+            rf = tmp; //交换q,rf，以保证下一趟归并时，仍从q 归并到rf  
+        }
+    }
+
+    //将r[i…m]和r[m +1 …n]归并到辅助数组rf[i…n]  
+    private static void merge(int[] r, int[] rf, int i, int m, int n) {
+        int j, k;
+        for (j = m + 1, k = i; i <= m && j <= n; ++k) {
+            if (r[j] < r[i])
+                rf[k] = r[j++];
+            else
+                rf[k] = r[i++];
+        }
+        while (i <= m)
+            rf[k++] = r[i++];
+        while (j <= n)
+            rf[k++] = r[j++];
+    }
+
+    /**
+     * 基数排序</br></br>
+     * 时间复杂度：O（nlogn），最好情况：O（nlogn），最坏情况：O（nlogn）。</br>
+     * 空间复杂度：O（n）。</br>
+     * 稳定性：稳定。</br></br>
+     * 1）选择一个基准元素，通常选择第一个元素或者最后一个元素；</br>
+     * 2）通过一趟排序讲待排序的记录分割成独立的两部分，其中一部分记录的元素值均比基准元素值小，另一部分记录的元素值比基准值大；</br>
+     * 3）此时基准元素在其排好序后的正确位置；</br>
+     * 4）然后分别对这两部分记录用同样的方法继续进行排序，直到整个序列有序。
+     * @param a 待排序集合
+     */
+    public static void radixSort(int[] a) {
+
     }
 }
