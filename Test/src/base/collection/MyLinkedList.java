@@ -8,6 +8,13 @@ public class MyLinkedList implements MyList {
         list.add("2");
         System.out.println(list.toString());
         System.out.println(list.contains(2));
+        list.set(1, "3");
+        System.out.println(list.toString());
+        System.out.println(list.get(1));
+        list.remove(0);
+        System.out.println(list.toString());
+        list.remove(new String("3"));
+        System.out.println(list.toString());
     }
 
     private int size;
@@ -48,21 +55,21 @@ public class MyLinkedList implements MyList {
         return true;
     }
 
-    private int indexOf(Object o) {
+    private int indexOf(Object element) {
         Node node = first;
         if (node == null) {
             return -1;
         }
-        if (o == null) {
-            for (int i = 0; node.next != null; node = node.next) {
+        if (element == null) {
+            for (int i = 0; node != null; node = node.next) {
                 if (node.element == null) {
                     return i;
                 }
                 i++;
             }
         } else {
-            for (int i = 0; node.next != null; node = node.next) {
-                if (o.equals(node.element)) {
+            for (int i = 0; node != null; node = node.next) {
+                if (element.equals(node.element)) {
                     return i;
                 }
                 i++;
@@ -86,21 +93,43 @@ public class MyLinkedList implements MyList {
     }
 
     @Override
-    public boolean remove(Object o) {
-        // TODO Auto-generated method stub
+    public boolean remove(Object element) {
+        System.out.println(element instanceof String);
+        int index = indexOf(element);
+        if (index >= 0) {
+            unlink(node(index));
+            return true;
+        }
         return false;
     }
 
     @Override
     public Object get(int index) {
-        // TODO Auto-generated method stub
-        return null;
+        checkIndex(index);
+        return node(index).element;
+    }
+
+    private void checkIndex(int index) {
+        if (index < 0 || index > size - 1) {
+            throw new RuntimeException();
+        }
+    }
+
+    private Node node(int index) {
+        Node node = first;
+        for (int i = 0; i < index; i++) {
+            node = node.next;
+        }
+        return node;
     }
 
     @Override
     public Object set(int index, Object element) {
-        // TODO Auto-generated method stub
-        return null;
+        checkIndex(index);
+        Node node = node(index);
+        Object oldElement = node.element;
+        node.element = element;
+        return oldElement;
     }
 
     @Override
@@ -111,8 +140,32 @@ public class MyLinkedList implements MyList {
 
     @Override
     public Object remove(int index) {
-        // TODO Auto-generated method stub
-        return null;
+        checkIndex(index);
+        return unlink(node(index));
+    }
+
+    private Object unlink(Node node) {
+        Object element = node.element;
+        Node prev = node.prev;
+        Node next = node.next;
+
+        if (prev == null) {
+            first = next;
+        } else {
+            prev.next = next;
+            node.prev = null;
+        }
+
+        if (next == null) {
+            last = prev;
+        } else {
+            next.prev = prev;
+            node.next = null;
+        }
+
+        node.element = null;
+        size--;
+        return element;
     }
 
     @Override

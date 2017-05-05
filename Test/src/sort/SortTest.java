@@ -132,7 +132,7 @@ public class SortTest {
     }
 
     private static void shellSort(int[] a, int dk) {
-        for (int i = dk; i < a.length; i += dk) {
+        for (int i = dk; i < a.length; i++) {
             int j = i - dk;
             int tmp = a[i];
             while (j >= 0 && a[j] > tmp) {

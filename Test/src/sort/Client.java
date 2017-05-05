@@ -1,7 +1,5 @@
 package sort;
 
-import sort.common.SortUtil;
-
 public class Client {
 
     public static void main(String[] args) {
