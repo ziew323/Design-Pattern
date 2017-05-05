@@ -3,7 +3,10 @@ package arithmetic;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -13,20 +16,59 @@ public class Shard<S> { // S类封装了机器节点的信息 ，如name、passw
 
     private List<S> shards; // 真实机器节点  
 
-    private final int NODE_NUM = 100; // 每个机器节点关联的虚拟节点个数  
+    private int NODE_NUM = 1000; // 每个机器节点关联的虚拟节点个数  
 
     public static void main(String[] args) {
-        int count = 3;
+        int count = 13;
         List<Server> servers = new ArrayList<Server>();
         for (int i = 0; i < count; i++) {
             Server server = new Server("server" + i, "" + i, "127.0.0.1", 7000 + i);
             servers.add(server);
         }
         Shard<Server> shard = new Shard<Server>(servers);
-        for (int i = 0; i < 100; i++) {
+        /*for (int i = 0; i < 10; i++) {
             System.out.println("key=" + i + ",server=" + shard.getShardInfo("" + i));
-        }
+        }*/
         System.out.println(shard.nodes.size());
+        shard.testCount(10000);
+
+        System.out.println("--------------add shard--------------");
+        Server server = new Server("server" + 14, "" + 14, "127.0.0.1", 7000 + 14);
+        shard.add(server);
+        /*for (int i = 0; i < 10; i++) {
+            System.out.println("key=" + i + ",server=" + shard.getShardInfo("" + i));
+        }*/
+        System.out.println(shard.nodes.size());
+        shard.testCount(10000);
+
+        System.out.println("--------------remove shard--------------");
+        shard.remove(servers.get(0));
+        /*for (int i = 0; i < 10; i++) {
+            System.out.println("key=" + i + ",server=" + shard.getShardInfo("" + i));
+        }*/
+        System.out.println(shard.nodes.size());
+        shard.testCount(10000);
+        System.out.println(shard.shards.size());
+
+        System.out.println("--------------increase shard--------------");
+        shard.increace(1000);
+        System.out.println(shard.nodes.size());
+        shard.testCount(10000);
+    }
+
+    public void testCount(int count) {
+        Map<S, Integer> map = new HashMap<S, Integer>();
+        for (int i = 0; i < count; i++) {
+            S server = this.getShardInfo("" + i);
+            if (!map.containsKey(server)) {
+                map.put(server, 1);
+            } else {
+                map.put(server, map.get(server) + 1);
+            }
+        }
+        for (Entry<S, Integer> entry : map.entrySet()) {
+            System.out.println("server=" + entry.getKey() + ",count=" + entry.getValue());
+        }
     }
 
     public Shard(List<S> shards) {
@@ -42,9 +84,13 @@ public class Shard<S> { // S类封装了机器节点的信息 ，如name、passw
 
             for (int n = 0; n < NODE_NUM; n++)
                 // 一个真实机器节点关联NODE_NUM个虚拟节点  
-                nodes.put(hash("SHARD-" + i + "-NODE-" + n), shardInfo);
+                nodes.put(hash(key(shardInfo, n)), shardInfo);
 
         }
+    }
+
+    private String key(S shard, int node) {
+        return String.format("SHARD-%s-NODE-%s", shard, node);
     }
 
     public S getShardInfo(String key) {
@@ -56,11 +102,38 @@ public class Shard<S> { // S类封装了机器节点的信息 ，如name、passw
     }
 
     public void add(S shard) {
+        addNodes(shard);
+        shards.add(shard);
+    }
 
+    private void addNodes(S shard) {
+        for (int n = 0; n < NODE_NUM; n++) {
+            nodes.put(hash(key(shard, n)), shard);
+        }
     }
 
     public void remove(S shard) {
+        removeNodes(shard);
+        shards.remove(shard);
+    }
 
+    private void removeNodes(S shard) {
+        for (int n = 0; n < NODE_NUM; n++) {
+            nodes.remove(hash(key(shard, n)));
+        }
+    }
+
+    public void increace(int addNum) {
+        int newNum = NODE_NUM + addNum;
+        for (int i = 0; i != shards.size(); ++i) { // 每个真实机器节点都需要关联虚拟节点  
+            final S shardInfo = shards.get(i);
+
+            for (int n = NODE_NUM; n < newNum; n++)
+                // 一个真实机器节点关联NODE_NUM个虚拟节点  
+                nodes.put(hash(key(shardInfo, n)), shardInfo);
+
+        }
+        NODE_NUM = newNum;
     }
 
     /** 
@@ -113,13 +186,13 @@ public class Shard<S> { // S类封装了机器节点的信息 ，如name、passw
 
     public static class Server {
         private String name;
-    
+
         private String password;
-    
+
         private String ip;
-    
+
         private int port;
-    
+
         public Server(String name, String password, String ip, int port) {
             super();
             this.name = name;
@@ -127,44 +200,44 @@ public class Shard<S> { // S类封装了机器节点的信息 ，如name、passw
             this.ip = ip;
             this.port = port;
         }
-    
+
         public String getName() {
             return name;
         }
-    
+
         public void setName(String name) {
             this.name = name;
         }
-    
+
         public String getPassword() {
             return password;
         }
-    
+
         public void setPassword(String password) {
             this.password = password;
         }
-    
+
         public String getIp() {
             return ip;
         }
-    
+
         public void setIp(String ip) {
             this.ip = ip;
         }
-    
+
         public int getPort() {
             return port;
         }
-    
+
         public void setPort(int port) {
             this.port = port;
         }
-    
+
         @Override
         public String toString() {
             return "Server [name=" + name + ", password=" + password + ", ip=" + ip + ", port=" + port + "]";
         }
-    
+
     }
 
 }
